@@ -49,9 +49,10 @@ func (s *Server) Start() {
 					// read length
 					cnt, err := conn.Read(buf)
 					if err != nil {
-						fmt.Println("recv buf err ", err)
+						fmt.Println("recv buf err", err)
 						continue
 					}
+					fmt.Printf("recv client buf %s, cnt %d\n", buf, cnt)
 					// if err != nill read content write back
 					if _, err := conn.Write(buf[:cnt]); err != nil {
 						fmt.Println("write back buf err ", err)
@@ -72,7 +73,7 @@ func (s *Server) Serve() {
 	// do something after start
 
 	// block, because Start is async
-	select{}
+	select {}
 }
 
 // init server module method
@@ -81,7 +82,7 @@ func NewServer(name string) ziface.IServer {
 		Name:      name,
 		IPVersion: "tcp4",
 		IP:        "0.0.0.0",
-		Port:      9999,
+		Port:      8999,
 	}
 	return s
 }
